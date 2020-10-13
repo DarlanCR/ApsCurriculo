@@ -10,15 +10,13 @@ em caso negativo, o aluno poderá perder os pontos resultantes da apresentação
 7 - O programa deve gerar um arquivo .html
 """
 
-def habCont():
-    testando = input("Deseja cadastrar outra habilidade? ")
-    while testando == 'sim':
-        habilidade()
-        testando = input("Deseja cadastrar outra habilidade? ")
 
 def habilidade():
     hab = input("Digite uma habilidade: ")
-    return '''<li> ''' + hab + ''' </li>'''
+    cont = input("Deseja corrigir a informação? sim/não ")
+    if cont == 'sim':
+        hab = input("Digite uma habilidade: ")
+    return '''<li class="last"> ''' + hab + ''' </li>'''
 
 
 def exp():
@@ -27,36 +25,38 @@ def exp():
     cargo = input("Digite seu cargo: ")
     data = input("Digite o ano que entrou: ")
     data2 = input("Digite o ano que saiu: ")
+    cont = input("Deseja corrigir alguma informação? sim/não ")
+    while cont == 'sim':
+        info = input("Qual informação gostaria de corrigir:\nempresa/cargo/entrada/saida ")
+        if info == 'empresa':
+            emp = input("Digite o nome da empresa: ")
+        elif info == 'cargo':
+            cargo = input("Digite seu cargo: ")
+        elif info == 'entrada':
+            data = input("Digite o ano que entrou: ")
+        elif info == 'saida':
+            data2 = input("Digite o ano que saiu: ")
+        cont = input("Deseja corrigir alguma informação? sim/não ")
     return '''<h2>''' + emp + ''' </h2>\n<h3> ''' + cargo + '''</h3>\n<h4> ''' + data + '''-''' + data2 + '''</h4>'''
-
-
-def expCont():
-    i=0
-    exp = []
-    testando = input("Deseja cadastrar outra experiência? ")
-    while testando == 'sim':
-        i = + 1
-        exp()
-        vezes = exp[i]
-        testando = input("Deseja cadastrar outra experiência? ")
-        return exp[i]
 
 
 def facul():
     print("\nFORMAÇÃO")
-    form = input("Digite o curso: ")
+    form = input("Digite o nome da instituição: ")
     ano = input("Digite o ano em que se formou: ")
     curso = input("Digite em qual curso se formou: ")
+    cont = input("Deseja corrigir alguma informação? sim/não ")
+    while cont == 'sim':
+        info = input("Qual informação gostaria de corrigir:\n instituiçao/ano/curso ")
+        if info == 'instituiçao':
+            form = input("Digite o nome da instituição: ")
+        elif info == 'ano':
+            ano = input("Digite o ano em que se formou: ")
+        elif info == 'curso':
+            curso = input("Digite em qual curso se formou: ")
+        cont = input("Deseja corrigir alguma informação? sim/não ")
     return '''<h2> ''' + form + ''' </h2>'''    ''' <h3> ''' + ano + ''' &mdash; <strong> ''' + curso + '''</strong> 
     </h3> '''
-
-
-def faculCont():
-    testando = input("Deseja cadastrar outra formação? ")
-    while testando == 'sim':
-        facul()
-        testando = input("Deseja cadastrar outra formação? ")
-        return facul()
 
 
 def head():
@@ -70,13 +70,13 @@ def head():
         info = input("Qual informação gostaria de corrigir:\n nome/nascimento/email/telefone/endereço ")
         if info == 'nome':
             nome = input("Nome completo: ")
-        if info == 'nascimento':
+        elif info == 'nascimento':
             nasc = input("Data de nascimento: ")
-        if info == 'email':
+        elif info == 'email':
             email = input("Email: ")
-        if info == 'telefone':
+        elif info == 'telefone':
             tel = input("Telefone: ")
-        if info == 'endereço':
+        elif info == 'endereço':
             end = input("Endereço: ")
         cont = input("Deseja corrigir alguma informação? sim/não ")
 
@@ -124,7 +124,7 @@ def head():
                             </div>
                             <div class="yui-u">
                                 <ul class="talent">'''
-                        + habilidade() + str(habCont()) +
+                        + habilidade() +
                         '''</ul>
                             </div>
                         </div>
@@ -134,7 +134,7 @@ def head():
                             </div>
                             <div class="yui-u">
                                 <div class="job">'''
-                        + exp() + str(expCont()) +
+                        + exp() +
                         '''</div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@ def head():
                                 <h2>Formação</h2>
                             </div>
                             <div class="yui-u">'''
-                        + facul() + str(faculCont()) +
+                        + facul() +
 
                         '''  </div>
                     </div>
